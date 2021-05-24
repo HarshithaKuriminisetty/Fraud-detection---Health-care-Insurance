@@ -43,9 +43,6 @@ inpa_fn$no_phy_count <- apply(inpa_fn[7:9], 1, function(x) 3-sum(is.na(x)))
 
 View(inpa_fn)
 
-# inpa_fn <- 
-
-
 
 outpa_fn <- outpa %>% inner_join(train, by = 'Provider')
 outpa_fn$no_dia_count <- apply(outpa_fn[10:19], 1, function(x) 10 -sum(is.na(x)))
@@ -126,6 +123,7 @@ tree = rpart(fraud ~ ., data = inpa_train_3,
                             cp = 0.00004))   
 #  1, 3, 0.00004    0.7272
 # useful -1,3,0.00004 -0.7189; 2,4,0.00004 - 0.7186 ;  1,2,0.00004 -0.7184   ; 2,1,0.00004 -0.7161
+
 # Evaluate Decision Tree Performance
 pred_tree = predict(tree, inpa_test_3, type = "class")
 confusionMatrix(data = pred_tree,
